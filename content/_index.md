@@ -1,32 +1,58 @@
 ---
-title: "Fortinet TECWorkshop Template - MVP2"
-linkTitle: "TECWorkshop Template"
-weight: 1
+title: "AI 102 - How LLMs Are Built & What GenAI Means"
+linkTitle: "AI 102 - How LLMs Are Built & What GenAI Means"
+weight: 10
 archetype: "home"
-description: "Hugo for Fortinet TEC Workshops"
+description: "GenAI Lab - From Tokens to Transformers to a Generating Language Model"
 ---
 
+# Welcome to the GenAI Creator Lab!
 
-THIS IS A TEST
+This is the follow-up to **AI 101 - Building Supervised ML Models**. In AI 101 you built a
+Transformer-based classifier that produced a single deterministic answer: *spam* or *ham*.
+In this lab we keep the same Transformer machinery but change the **objective**: instead of
+classifying text, the model will **generate** text — one token at a time. That single shift in
+objective is the whole story of how a Large Language Model (LLM) works.
 
+## In this lab you will
 
+- Understand how raw text becomes **tokens** and then **embeddings**
+- Build the **self-attention** mechanism that lets a model weigh context
+- Assemble a small **decoder-only Transformer** (the GPT-style architecture)
+- **Train** it on real text so it learns to predict the next token
+- Run **inference** with temperature, top-k and top-p sampling and watch it generate
+- See where **foundation models, fine-tuning, RAG, grounding, agents, tools and MCP** fit in
+- Walk away with a precise **glossary** so the buzzwords stop being fuzzy
 
-### {{% badge style="info" color="red" icon="fa-fw fas fa-exclamation-triangle" title=" " %}}Change{{% /badge %}} FYI, YOU WILL NOW NEED TO CHECKIN WITH YOUR EMAIL ADDRESS TO VIEW THIS GUIDE
-This change helps with analytics and data gathering and is consistent with UserRepo guide (this repo) serving as the root of every new workshop (e.g. this guide is always on latest and greatest featureset which gets cloned into every new workshop)  
+## What This Lab Covers — and What It Does Not
 
-This site will explain how to use the [Hugo Web Framework](https://gohugo.io/) & the ["reLearn" Theme](https://mcshelby.github.io/hugo-theme-relearn/index.html) to effectively organize & deliver Fortinet TEC Workshops & Product demos in a consistent, simple, and visually appealing format.
+- This lab focuses on **generative** language models (the "GPT" family of decoder-only Transformers).
+- You will train a *small* model from scratch so every step is visible and runs on free hardware.
+- This is **not** a guide to training GPT-4-scale models — the principles are identical, only the
+  data, parameters and compute differ by many orders of magnitude.
+- We use a character/word-level model for clarity; production LLMs use subword tokenization at massive scale.
 
-The beauty of this framework lies in its simplicity.  Within approx 30 mins, anybody can have a site up and running.  Content is created via Markdown files, and the workshop guide layout is simply a directory structure.
+## Learning Goals
 
-Follow along on this simple tutorial to get up and running with a Hugo formatted site for your TEC Workshop/training/demo content today!
+By the end of this lab you will be able to:
 
-### Learning Objectives
-- Setup UserRepo on your system & Build container with Hugo & CentralRepo
-- Learn to work in Hugo to create your content to display proper information flow for your TEC Workshop/demo/training
-- Publish your Hugo site to GitHub pages via a CI/CD model 
- 
-### Hugo and Fortinet TECWorkshops - Visually
-- The purpose of this workflow is to simplify creation of Fortinet TECWorkshop guides while providing an example CI/CD development environment with maximum re-usability 
-- Here's a visual representation of our process which will be fully explained in each chapter
+- Explain the difference between a **classifier** and a **generative** model
+- Describe the full LLM build pipeline: data → tokenize → embed → attention → train → infer
+- Explain **next-token prediction** and why it is the core training objective of every LLM
+- Define **foundation model**, **inferencing**, **grounding**, **fine-tuning**, **RAG**, **agentic AI**, **tools** and **MCP** — and tell them apart
+- Tune sampling parameters (**temperature**, **top-k**, **top-p**) and predict their effect
+- Reason about *why* LLMs hallucinate and how grounding mitigates it
 
-{{< FTNThugoFlow >}}
+## Lab Structure (Phases)
+
+This lab is organized into six phases plus a final challenge:
+
+| Phase | Title | What you build / learn |
+| ----- | ----- | ---------------------- |
+| 0 | Introduction | What GenAI is, classifier vs generator, the build roadmap |
+| 1 | Tokenization & Embeddings | Turn text into numbers the model can learn from |
+| 2 | Attention & the Transformer | Build self-attention and a decoder block by hand |
+| 3 | The Training Pipeline | Next-token prediction, loss, training loop |
+| 4 | Inference & Grounding | Sampling, hallucination, RAG, grounding |
+| 5 | The GenAI Ecosystem | Foundation models, fine-tuning, agents, tools, MCP + glossary |
+| 6 | Final Challenge | Improve generation quality and submit your model |

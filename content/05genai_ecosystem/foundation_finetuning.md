@@ -67,3 +67,25 @@ Common misconception to clear up for your audience: *"We need to fine-tune the m
 knows our products."* Usually false. If the need is **factual recall of your data**, RAG is cheaper,
 more up-to-date, and less error-prone. Fine-tuning is for *behavior*, not for *facts*.
 {{% /notice %}}
+
+<!-- Renders the Mermaid diagrams on this page.
+     The fortinet-hugo image sets `mermaid = false` in its generated hugo.toml, which in
+     Relearn 8 disables the theme's Mermaid dependency entirely: the diagram markup is
+     emitted, but no Mermaid library is ever loaded and the theme's CSS keeps every
+     .mermaid block at `visibility: hidden`. Remove this block once the image is fixed. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  if (!window.__ftntMermaidLoaded) {
+    window.__ftntMermaidLoaded = true;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    for (const el of document.querySelectorAll("pre.mermaid")) {
+      try {
+        await mermaid.run({ nodes: [el] });
+      } catch (e) {
+        console.error("Mermaid failed to render a diagram on this page:", e);
+      }
+      // Relearn only un-hides a diagram once its own script adds .mermaid-render.
+      el.classList.add("mermaid-render");
+    }
+  }
+</script>

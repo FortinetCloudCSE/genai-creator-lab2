@@ -1,37 +1,43 @@
 {
-  "repoName":"UserRepo",
-  "author":"Jeff Kopko",
-  "workshopTitle":"Hugo for Fortinet TECWorkshops",
-  "themeVariant":"Workshop",
-  "logoBannerText":"FortiHugo",
-  "logoBannerSubText":"",
-  "errorLevel":"warning",
-  "googleServicesID":"G-5RZBH288ST",
+  "repoName": "genai-creator-lab2",
+  "author": "Julian Petersohn",
+  "workshopTitle": "AI 302 - Train Your Own Small LLM",
+  "themeVariant": "Workshop",
+  "logoBannerText": "AI 302 - Train Your Own Small LLM",
+  "logoBannerSubText": "From tokens to a language model you trained yourself",
+  "errorLevel": "warning",
+  "googleServicesID": "G-5RZBH288ST",
   "marketingCode": "FortiHugo202",
   "shortcuts": [
-  {
-    "text": "Fortinet Cloud CSE GitHub Org",
-    "URL": "https://github.com/FortinetCloudCSE",
-    "icon": "fa-graduation-cap",
-    "weight":10
-  },
-  {
-    "text": "Fortinet Standard Workshop Guide",
-    "URL": "https://fortinetcloudcse.github.io/UserRepo",
-    "icon": "fa-tools",
-    "weight":20
-  },
-  {
-    "text": "Fortinet Standard Workshop Template Repo",
-    "URL": "https://github.com/FortinetCloudCSE/UserRepo",
-    "icon": "fa-tools",
-    "weight":30
-  },
-  {
-    "text": "Fortinet Hugo reLearn theme - Guide",
-    "URL": "https://mcshelby.github.io/hugo-theme-relearn/index.html",
-    "icon": "fa-tools",
-    "weight":40
-  }
+    {
+      "text": "Solution Jupyter Notebook",
+      "URL": "https://github.com/FortinetCloudCSE/genai-creator-lab2/tree/main/solution/genai_lab_solution.ipynb",
+      "icon": "fa-graduation-cap",
+      "weight": 10
+    },
+    {
+      "text": "AI 301 - Building Supervised ML Models",
+      "URL": "https://fortinetcloudcse.github.io/genai-creator-lab/",
+      "icon": "fa-graduation-cap",
+      "weight": 20
+    },
+    {
+      "text": "AI 101 - Agents, MCP & the Agentic Security Model",
+      "URL": "https://fortinetcloudcse.github.io/ai-101/index.html",
+      "icon": "fa-graduation-cap",
+      "weight": 30
+    },
+    {
+      "text": "Attention Is All You Need (2017)",
+      "URL": "https://arxiv.org/abs/1706.03762",
+      "icon": "fa-book",
+      "weight": 40
+    },
+    {
+      "text": "Google ML Trainings",
+      "URL": "https://developers.google.com/machine-learning",
+      "icon": "fa-book",
+      "weight": 50
+    }
   ]
 }

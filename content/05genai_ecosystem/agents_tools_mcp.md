@@ -113,3 +113,32 @@ If your colleagues remember one slide, make it this one: **Foundation model = th
 its training/manners. RAG = giving it the right reference documents. Tools = its hands. MCP = the
 standard sockets its hands plug into. Agent = letting it decide what to do next.**
 {{% /notice %}}
+
+{{% notice info %}}
+**Want to build one?** [AI 101 - Agents, MCP & the Agentic Security Model](https://fortinetcloudcse.github.io/ai-101/index.html)
+is the hands-on counterpart to this page: you build an HR assistant, wire it to tools and an MCP
+server, and then attack it. This lab explains the engine; that lab builds the car and crashes it on
+purpose.
+{{% /notice %}}
+
+<!-- Renders the Mermaid diagrams on this page.
+     The fortinet-hugo image sets `mermaid = false` in its generated hugo.toml, which in
+     Relearn 8 disables the theme's Mermaid dependency entirely: the diagram markup is
+     emitted, but no Mermaid library is ever loaded and the theme's CSS keeps every
+     .mermaid block at `visibility: hidden`. Remove this block once the image is fixed. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  if (!window.__ftntMermaidLoaded) {
+    window.__ftntMermaidLoaded = true;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    for (const el of document.querySelectorAll("pre.mermaid")) {
+      try {
+        await mermaid.run({ nodes: [el] });
+      } catch (e) {
+        console.error("Mermaid failed to render a diagram on this page:", e);
+      }
+      // Relearn only un-hides a diagram once its own script adds .mermaid-render.
+      el.classList.add("mermaid-render");
+    }
+  }
+</script>

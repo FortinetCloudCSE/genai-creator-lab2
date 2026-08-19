@@ -14,7 +14,7 @@ explicitly.
 human-like intelligence. The umbrella over everything below.
 
 **Machine Learning (ML)** — A subset of AI: systems that learn patterns from data instead of being
-explicitly programmed. (Covered in AI 101.)
+explicitly programmed. (Covered in AI 301.)
 
 **Deep Learning (DL)** — A subset of ML using multi-layer neural networks. Transformers are deep
 learning.
@@ -40,7 +40,7 @@ similar vectors. Encodes meaning numerically.
 **Positional encoding** — Information added to embeddings telling the model *where* each token sits,
 since attention itself is order-blind.
 
-**Transformer** — The neural architecture built on self-attention. **Encoder** variants (AI 101) read
+**Transformer** — The neural architecture built on self-attention. **Encoder** variants (AI 301) read
 bidirectionally for understanding/classification; **decoder** variants (this lab) read left-to-right
 for generation.
 
@@ -74,7 +74,7 @@ the preceding ones.
 Training minimizes it. **Perplexity** is its exponential, an intuitive "how many options is it
 choosing among" score.
 
-**Backpropagation & gradient descent** — How weights are updated to reduce loss (same as AI 101).
+**Backpropagation & gradient descent** — How weights are updated to reduce loss (same as AI 301).
 
 **Foundation model** — A large model pre-trained on broad data, reused as a base for many tasks via
 prompting, RAG, or fine-tuning. Examples: GPT, Claude, Gemini, Llama.

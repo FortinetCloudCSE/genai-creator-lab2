@@ -62,3 +62,25 @@ than a free Colab session provides.
 A working, if tiny, GPT. It will be trained on a text corpus and will generate new text in the style
 of that corpus, token by token, using exactly the same principles as the models behind ChatGPT,
 Claude and Gemini — only smaller.
+
+<!-- Renders the Mermaid diagrams on this page.
+     The fortinet-hugo image sets `mermaid = false` in its generated hugo.toml, which in
+     Relearn 8 disables the theme's Mermaid dependency entirely: the diagram markup is
+     emitted, but no Mermaid library is ever loaded and the theme's CSS keeps every
+     .mermaid block at `visibility: hidden`. Remove this block once the image is fixed. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  if (!window.__ftntMermaidLoaded) {
+    window.__ftntMermaidLoaded = true;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    for (const el of document.querySelectorAll("pre.mermaid")) {
+      try {
+        await mermaid.run({ nodes: [el] });
+      } catch (e) {
+        console.error("Mermaid failed to render a diagram on this page:", e);
+      }
+      // Relearn only un-hides a diagram once its own script adds .mermaid-render.
+      el.classList.add("mermaid-render");
+    }
+  }
+</script>

@@ -9,6 +9,8 @@ the real world — the terms that get thrown around in vendor decks and easily m
 chapter defines **foundation models, fine-tuning, agentic AI, tools, and MCP**, shows how they relate,
 and closes with a precise **glossary** you can keep as a reference.
 
+**Approx. time:** 20 minutes
+
 **Chapters:**
 - [Foundation Models & Fine-tuning](foundation_finetuning.md)
 - [Agents, Tools & MCP](agents_tools_mcp.md)

@@ -11,7 +11,7 @@ In the sentence *"The server crashed because it ran out of memory"*, to understa
 must look back at *"server"*. **Self-attention** is the mechanism that lets every token look at every
 other token and decide how much to pay attention to each.
 
-You saw self-attention in AI 101 at a high level. Here we open it up.
+You saw self-attention in AI 301 at a high level. Here we open it up.
 
 ## Query, Key, Value
 
@@ -55,21 +55,33 @@ In plain language:
 ```python
 #@title Scaled dot-product attention, by hand
 def scaled_dot_product_attention(q, k, v, mask=None):
-    # q, k, v shapes: (batch, seq_len, d_k)
+    """q, k, v shapes: (batch, seq_len, d_k). Returns (output, attention_weights)."""
     d_k = tf.cast(tf.shape(k)[-1], tf.float32)
     scores = tf.matmul(q, k, transpose_b=True) / tf.math.sqrt(d_k)   # (batch, seq, seq)
     if mask is not None:
-        scores += (mask * -1e9)        # set masked positions to -infinity before softmax
+        scores += (mask * -1e9)        # push masked positions to -infinity before softmax
     weights = tf.nn.softmax(scores, axis=-1)
     return tf.matmul(weights, v), weights
+
+
+# Run it on 4 random tokens and look at the attention weights
+demo = tf.random.normal((1, 4, 8))
+out, w = scaled_dot_product_attention(demo, demo, demo)
+print("Output shape           :", out.shape)          # (1, 4, 8) - same shape as the input
+print("Attention weight matrix:\n", np.round(w[0].numpy(), 2))
+print("Every row sums to 1    :", np.allclose(w[0].numpy().sum(axis=-1), 1.0))
 ```
+
+Each **row** of that matrix is one token's answer to "how much do I care about each token in the
+sequence?" — and because of the softmax, every row sums to exactly 1. Right now the weights are
+meaningless (the input was random noise); after training they encode real linguistic relationships.
 
 ## Multi-Head Attention
 
 One set of Q/K/V can only capture one kind of relationship. **Multi-head attention** runs several
 attention operations in parallel, each with its own learned Q/K/V, then concatenates the results.
 
-As in AI 101's classifier:
+As in the AI 301 classifier:
 
 - Head 1 might track subject ↔ pronoun links
 - Head 2 might track verb tense
@@ -91,3 +103,25 @@ Keras gives us a battle-tested `layers.MultiHeadAttention`, so in the actual mod
 rather than the hand-written version above. The hand-written version exists so you can see there is
 no magic inside — it is dot products, a scale, a softmax, and a weighted sum.
 {{% /notice %}}
+
+<!-- Renders the Mermaid diagrams on this page.
+     The fortinet-hugo image sets `mermaid = false` in its generated hugo.toml, which in
+     Relearn 8 disables the theme's Mermaid dependency entirely: the diagram markup is
+     emitted, but no Mermaid library is ever loaded and the theme's CSS keeps every
+     .mermaid block at `visibility: hidden`. Remove this block once the image is fixed. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  if (!window.__ftntMermaidLoaded) {
+    window.__ftntMermaidLoaded = true;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    for (const el of document.querySelectorAll("pre.mermaid")) {
+      try {
+        await mermaid.run({ nodes: [el] });
+      } catch (e) {
+        console.error("Mermaid failed to render a diagram on this page:", e);
+      }
+      // Relearn only un-hides a diagram once its own script adds .mermaid-render.
+      el.classList.add("mermaid-render");
+    }
+  }
+</script>

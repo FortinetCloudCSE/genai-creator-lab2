@@ -57,7 +57,7 @@ How retrieval works, step by step:
    **vector database**.
 2. When a question arrives, **embed the question** too.
 3. Find the document chunks whose vectors are **most similar** to the question's vector (semantic
-   search — the *"king − man + woman ≈ queen"* idea you saw in AI 101, used to match meaning rather
+   search — the *"king − man + woman ≈ queen"* idea you saw in AI 301, used to match meaning rather
    than keywords).
 4. Paste those chunks into the prompt and instruct the model to answer from them.
 
@@ -88,5 +88,37 @@ grounded context.
 Because RAG injects retrieved text directly into the prompt, an attacker who can plant text in your
 knowledge base (or in a web page the model reads) can attempt **prompt injection** — embedding
 instructions that the model may follow. Grounding improves accuracy but expands the trust boundary to
-include *every source you retrieve from*. This is a core GenAI security consideration worth flagging
-to your audience.
+include *every source you retrieve from*.
+
+The reason this works at all is the mechanism you built in Phase 3: the model has **no structural
+distinction between instructions and data**. Everything — system prompt, user question, retrieved
+document — arrives as one flat sequence of tokens, and the model simply continues it. There is no
+privilege boundary inside the context window to enforce.
+
+{{% notice tip %}}
+If you want to *exploit* this rather than just understand it, that is the whole subject of
+[AI 101 - Agents, MCP & the Agentic Security Model](https://fortinetcloudcse.github.io/ai-101/index.html),
+where you build an agent and then deliberately compromise it.
+{{% /notice %}}
+
+<!-- Renders the Mermaid diagrams on this page.
+     The fortinet-hugo image sets `mermaid = false` in its generated hugo.toml, which in
+     Relearn 8 disables the theme's Mermaid dependency entirely: the diagram markup is
+     emitted, but no Mermaid library is ever loaded and the theme's CSS keeps every
+     .mermaid block at `visibility: hidden`. Remove this block once the image is fixed. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  if (!window.__ftntMermaidLoaded) {
+    window.__ftntMermaidLoaded = true;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    for (const el of document.querySelectorAll("pre.mermaid")) {
+      try {
+        await mermaid.run({ nodes: [el] });
+      } catch (e) {
+        console.error("Mermaid failed to render a diagram on this page:", e);
+      }
+      // Relearn only un-hides a diagram once its own script adds .mermaid-render.
+      el.classList.add("mermaid-render");
+    }
+  }
+</script>

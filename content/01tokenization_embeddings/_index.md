@@ -9,6 +9,8 @@ turn human language into something a neural network can learn from: **tokenizati
 into units and mapping them to integers) and **embeddings** (turning those integers into meaningful
 vectors). You will also load the text corpus your model will be trained on.
 
+**Approx. time:** 25 minutes
+
 **Chapters:**
 - [Load the Text Corpus](load_corpus.md)
 - [Tokenization](tokenization.md)
